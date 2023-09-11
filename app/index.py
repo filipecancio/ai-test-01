@@ -1,28 +1,9 @@
-from nltk import word_tokenize, corpus
-from nltk.corpus import floresta
-from nltk.stem import RSLPStemmer
+from wizzard import Wizzard
 
-class PreProcessing:
-    def __init__(self):
-        self.stopwords = set(corpus.stopwords.words('portuguese'))
-        self.stemmer = RSLPStemmer()
+if __name__ == '__main__':
+    wizzard = Wizzard()
+    wizzard.initialize()
 
-    def initialize(self):
-        for(word,classifications) in floresta.tagged_words():
-            classifications.append(word.lower(),classifications)
-
-        return{
-            "stop_words":self.stopwords,
-            "classificacoes":classifications
-        }
-    
-    def getTokens(self, text):
-        tokens = word_tokenize(text)
-        return tokens
-
-    def preprocess(self, text):
-        tokens = word_tokenize(text)
-        tokens = [token.lower() for token in tokens if token.isalpha()]
-        tokens = [token for token in tokens if token not in self.stopwords]
-        tokens = [self.stemmer.stem(token) for token in tokens]
-        return tokens
+    example = "O rato roeu a roupa do rei de roma"
+    tokens = wizzard.getTokens(example)
+    print(tokens)
