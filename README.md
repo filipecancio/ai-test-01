@@ -2,6 +2,10 @@
 
 ## Pra rodar
 
+````bash
+pip3 install -r requirements.txt
+```
+
 execute o comando abaixo para criar a imagem:
 ```bash
 docker build -t ai-test-01 .

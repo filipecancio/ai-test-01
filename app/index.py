@@ -1,9 +1,7 @@
-from wizzard import Wizzard
+from text_catcher import TextCatcher
 
 if __name__ == '__main__':
-    wizzard = Wizzard()
-    wizzard.initialize()
+    text_catcher = TextCatcher()
 
-    example = "O rato roeu a roupa do rei de roma"
-    tokens = wizzard.getTokens(example)
-    print(tokens)
+    example = text_catcher.listen("O rato roeu a roupa do rei de roma")
+    print(example)
