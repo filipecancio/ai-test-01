@@ -1,4 +1,5 @@
 import speech_recognition as SR
+from general_functions import getDirectory
 from phrase_processor import PhraseProcessor
 
 class AudioCatcher:
@@ -16,7 +17,8 @@ class AudioCatcher:
 
             return self.process_audio(text)
         
-    def play_recorded_audio(self, audio):
+    def play_recorded_audio(self, audio_path):
+        audio = getDirectory(audio_path)
         with SR.AudioFile(audio) as source:
             text = self.recognizer.listen(source)
             return self.process_audio(text)
