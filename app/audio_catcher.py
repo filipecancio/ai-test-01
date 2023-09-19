@@ -1,4 +1,4 @@
-import SpeechRecognition as SR
+import speech_recognition as SR
 from phrase_processor import PhraseProcessor
 
 class AudioCatcher:
@@ -10,11 +10,21 @@ class AudioCatcher:
     def listen(self):
         with self.microphone as source:
             self.recognizer.adjust_for_ambient_noise(source)
-            audio = self.recognizer.listen(source, timeout = 3)
+            print("🎤 fale alguma coisa 🎤")
+            text = self.recognizer.listen(source, timeout = 3)
+            print("🚧 processando audio 🚧")
 
-            try:
-                text = self.recognizer.recognize_google(audio, language = 'pt-BR')
-                tokens = self.phrase_processor.getTokens(text)
-                return tokens
-            except SR.UnknownValueError:
-                return ["ERROR: Não entendi o que você disse"]
+            return self.process_audio(text)
+        
+    def play_recorded_audio(self, audio):
+        with SR.AudioFile(audio) as source:
+            text = self.recognizer.listen(source)
+            return self.process_audio(text)
+            
+    def process_audio(self,audio):
+        try:
+            text = self.recognizer.recognize_google(audio, language = 'pt-BR')
+            tokens = self.phrase_processor.getTokens(text)
+            return tokens
+        except SR.UnknownValueError:
+            return ["ERROR: Não entendi o que você disse"]

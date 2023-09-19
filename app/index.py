@@ -1,7 +1,15 @@
-from text_catcher import TextCatcher
+from phrase_processor import PhraseProcessor
+from audio_catcher import AudioCatcher
+import os
+
+def getDirectory(rel_dir):
+    script_dir = os.path.dirname(__file__)
+    complete_dir = script_dir + rel_dir
+    return complete_dir
 
 if __name__ == '__main__':
-    text_catcher = TextCatcher()
+    audio_catcher = AudioCatcher()
+    familia_chita = getDirectory("/util/audio/familia_chita.wav")
 
-    example = text_catcher.listen("O rato roeu a roupa do rei de roma")
+    example = audio_catcher.play_recorded_audio(familia_chita)
     print(example)
