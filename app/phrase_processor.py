@@ -1,6 +1,5 @@
 import nltk
 from nltk import word_tokenize, corpus
-from nltk.corpus import floresta
 from nltk.stem import RSLPStemmer
 
 class SingletonMeta(type):
@@ -13,13 +12,13 @@ class SingletonMeta(type):
         return cls._instances[cls]
 
 class PhraseProcessor(metaclass=SingletonMeta):
-    def __init__(self):
-        nltk.download('rslp')
-        nltk.download('floresta')
-        nltk.download('stopwords')
-        nltk.download('punkt')
 
-        self.stopwords = set(corpus.stopwords.words('portuguese'))
+    def __init__(self):
+        self.LANGUAGE_CORPUS = "portuguese"
+        self.LANGUAGE_TALK = "pt-BR"
+
+        self.getDepencies()
+        self.stopwords = set(corpus.stopwords.words(LANGUAGE_CORPUS))
         self.stemmer = RSLPStemmer()
     
     def getTokens(self, text):
@@ -28,3 +27,21 @@ class PhraseProcessor(metaclass=SingletonMeta):
             if token in self.stopwords:
                 token_list.remove(token)
         return token_list
+    
+    def getDepencies(self):
+        try:
+            nltk.data.find('punkt.zip')
+        except:
+            nltk.download('punkt')
+        try:
+            nltk.data.find('rslp.zip')
+        except:
+            nltk.download('rslp')
+        try:
+            nltk.data.find('floresta.zip')
+        except:
+            nltk.download('floresta')
+        try:
+            nltk.data.find('stopwords.zip')
+        except:
+            nltk.download('stopwords')
