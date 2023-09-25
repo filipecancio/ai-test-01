@@ -21,7 +21,7 @@ class PhraseProcessor(metaclass=SingletonMeta):
         self.stopwords = set(corpus.stopwords.words(LANGUAGE_CORPUS))
         self.stemmer = RSLPStemmer()
     
-    def getTokens(self, text):
+    def removeStopWords(self, text):
         token_list = word_tokenize(text)
         for token in token_list:
             if token in self.stopwords:
