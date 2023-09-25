@@ -12,13 +12,13 @@ class SingletonMeta(type):
         return cls._instances[cls]
 
 class PhraseProcessor(metaclass=SingletonMeta):
+    LANGUAGE_CORPUS = "portuguese"
+    LANGUAGE_TALK = "pt-BR"
 
     def __init__(self):
-        self.LANGUAGE_CORPUS = "portuguese"
-        self.LANGUAGE_TALK = "pt-BR"
 
         self.getDepencies()
-        self.stopwords = set(corpus.stopwords.words(LANGUAGE_CORPUS))
+        self.stopwords = set(corpus.stopwords.words(self.LANGUAGE_CORPUS))
         self.stemmer = RSLPStemmer()
     
     def removeStopWords(self, text):
