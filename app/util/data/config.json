@@ -1,0 +1,61 @@
+{
+    "assistant_name": "ana",
+    "actions": [
+        {
+            "name": "ligar",
+            "target": [
+                "lâmpada",
+                "televisão",
+                "ar-condicionado"
+            ]
+        },
+        {
+            "name": "desligar",
+            "target": [
+                "lâmpada",
+                "televisão",
+                "ar-condicionado"
+            ]
+        },
+        {
+            "name": "acender",
+            "target": [
+                "lâmpada"
+            ]
+        },
+        {
+            "name": "apagar",
+            "target": [
+                "lâmpada"
+            ]
+        },
+        {
+            "name": "aumentar",
+            "target": [
+                "luminosidade",
+                "volume",
+                "temperatura"
+            ]
+        },
+        {
+            "name": "diminuir",
+            "target": [
+                "luminosidade",
+                "volume",
+                "temperatura"
+            ]
+        },
+        {
+            "name": "tocar",
+            "target": [
+                "música"
+            ]
+        },
+        {
+            "name": "parar",
+            "target": [
+                "música"
+            ]
+        }               
+    ]
+}
